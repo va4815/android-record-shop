@@ -19,6 +19,10 @@ class ArtistAdapter : BaseAdapter() {
         items.addAll(list)
     }
 
+    fun list() : List<Artist> {
+        return items
+    }
+
     override fun getCount(): Int {
         return items.size
     }
@@ -46,8 +50,7 @@ class ArtistAdapter : BaseAdapter() {
         return binding.root
     }
 
-    class ArtistViewHolder {
 
-    }
+
 
 }
