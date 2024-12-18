@@ -1,4 +1,4 @@
-package com.northcoders.recordshop;
+package com.northcoders.recordshop.ui.mainactivity;
 
 import android.os.Bundle;
 
@@ -13,11 +13,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.ActivityMainBinding;
 import com.northcoders.recordshop.model.Album;
-import com.northcoders.recordshop.model.AlbumRepository;
-import com.northcoders.recordshop.ui.mainactivity.AlbumAdapter;
-import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
 import java.util.List;
 
@@ -28,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private AlbumAdapter albumAdapter;
     private ActivityMainBinding binding;
     private MainActivityViewModel viewModel;
+    private MainActivityClickHandler clickHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,11 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        clickHandler = new MainActivityClickHandler(this);
+
+        binding.setClickHandler(clickHandler);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
