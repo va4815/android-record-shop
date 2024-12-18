@@ -7,14 +7,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.northcoders.recordshop.R
 import com.northcoders.recordshop.databinding.ActivityNewAlbumBinding
+import com.northcoders.recordshop.model.Album
 import com.northcoders.recordshop.model.Artist
 import com.northcoders.recordshop.model.Gender
 
 class NewAlbumActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewAlbumBinding
+    private lateinit var viewModel: NewAlbumActivityViewModel
+
+    private lateinit var artistAdapter: ArtistAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +34,24 @@ class NewAlbumActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_album)
 
-        val artists: List<Artist> = arrayListOf(
-            Artist(123, "bbb", Gender.F),
-            Artist(111, "aaa", Gender.F)
-        )
-        binding.artistSpinner.adapter = ArtistAdapter(this.applicationContext, artists)
+        viewModel = ViewModelProvider(this).get(NewAlbumActivityViewModel::class.java)
+
+
+        artistAdapter = ArtistAdapter()
+        binding.artistSpinner.adapter = artistAdapter
+
+
+        getAllArtists()
+
+    }
+
+    private fun getAllArtists() {
+        viewModel.getAllArtists().observe(this, object : Observer<List<Artist>> {
+            override fun onChanged(value: List<Artist>) {
+                artistAdapter.setList(value)
+                artistAdapter.notifyDataSetChanged()
+            }
+        })
 
     }
 

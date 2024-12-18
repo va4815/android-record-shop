@@ -10,7 +10,14 @@ import com.northcoders.recordshop.R
 import com.northcoders.recordshop.databinding.SpinnerArtistItemBinding
 import com.northcoders.recordshop.model.Artist
 
-class ArtistAdapter(private val context: Context, private val items: List<Artist>) : BaseAdapter() {
+class ArtistAdapter : BaseAdapter() {
+
+    private var items: MutableList<Artist> = mutableListOf()
+
+    fun setList(list: List<Artist>) {
+        items.clear()
+        items.addAll(list)
+    }
 
     override fun getCount(): Int {
         return items.size
@@ -26,7 +33,7 @@ class ArtistAdapter(private val context: Context, private val items: List<Artist
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val binding: SpinnerArtistItemBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context),
+            LayoutInflater.from(parent?.context),
             R.layout.spinner_artist_item,
             parent,
             false
@@ -37,6 +44,10 @@ class ArtistAdapter(private val context: Context, private val items: List<Artist
         binding.item = item
 
         return binding.root
+    }
+
+    class ArtistViewHolder {
+
     }
 
 }

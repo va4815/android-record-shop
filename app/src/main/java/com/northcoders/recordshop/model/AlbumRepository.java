@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.northcoders.recordshop.service.AlbumApiService;
+import com.northcoders.recordshop.service.ApiService;
 import com.northcoders.recordshop.service.RetrofitInstance;
 
 import java.util.ArrayList;
@@ -27,9 +27,9 @@ public class AlbumRepository {
     }
 
     public MutableLiveData<List<Album>> getMutableLiveData() {
-        AlbumApiService albumApiService = RetrofitInstance.getService();
+        ApiService service = RetrofitInstance.getService();
 
-        albumApiService.getAllAlbums().enqueue(new Callback<List<Album>>() {
+        service.getAllAlbums().enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
                 List<Album> albums = response.body();
@@ -46,7 +46,7 @@ public class AlbumRepository {
     }
 
     public void createAlbum(Album album) {
-        AlbumApiService albumApiService = RetrofitInstance.getService();
+        ApiService albumApiService = RetrofitInstance.getService();
 
         Call<Album> call = albumApiService.createAlbum(album);
 
