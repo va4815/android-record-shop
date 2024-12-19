@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="40dp"
         tools:context=".ui.newalbum.NewAlbumActivity">
 
 
@@ -27,7 +28,7 @@
             android:ems="10"
             android:inputType="text"
             android:hint="Ablum Name"
-            android:text="@{album.name}" />
+            android:text="@={album.name}" />
 
         <EditText
             android:id="@+id/releasedDateEditText"
@@ -39,7 +40,7 @@
             android:ems="10"
             android:inputType="text"
             android:hint="Released Date"
-            android:text="@{album.releasedDate}" />
+            android:text="@={album.releasedDate}" />
 
         <EditText
             android:id="@+id/genreEditText"

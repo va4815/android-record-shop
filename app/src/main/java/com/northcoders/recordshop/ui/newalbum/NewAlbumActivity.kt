@@ -88,7 +88,10 @@ class NewAlbumActivity : AppCompatActivity() {
                 id: Long
             ) {
                 val artist = artistAdapter.list()[position]
-                Toast.makeText(parent?.context, "clicked: "+artist.name, Toast.LENGTH_SHORT).show()
+
+                var artistIds = mutableListOf<Long>()
+                artistIds.add(artist.id)
+                binding.album?.artistIds = artistIds
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

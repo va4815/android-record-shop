@@ -6,7 +6,9 @@ import androidx.databinding.Bindable;
 import com.northcoders.recordshop.BR;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Album extends BaseObservable {
     private Long id;
@@ -14,13 +16,15 @@ public class Album extends BaseObservable {
     private String releasedDate;
     private Genre genre;
     private List<Song> songs = new ArrayList<>();
+    private List<Long> artistIds = new ArrayList<>();
 
-    public Album(Long id, String name, String releasedDate, Genre genre, List<Song> songs) {
+    public Album(Long id, String name, String releasedDate, Genre genre, List<Song> songs, List<Long> artistIds) {
         this.id = id;
         this.name = name;
         this.releasedDate = releasedDate;
         this.genre = genre;
         this.songs = songs;
+        this.artistIds = artistIds;
     }
 
     public Album() {
@@ -74,5 +78,15 @@ public class Album extends BaseObservable {
     public void setSongs(List<Song> songs) {
         this.songs = songs;
         notifyPropertyChanged(BR.songs);
+    }
+
+    @Bindable
+    public List<Long> getArtistIds() {
+        return artistIds;
+    }
+
+    public void setArtistIds(List<Long> artistIds) {
+        this.artistIds = artistIds;
+        notifyPropertyChanged(BR.artistIds);
     }
 }
