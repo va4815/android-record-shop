@@ -17,6 +17,7 @@ import com.northcoders.recordshop.R
 import com.northcoders.recordshop.databinding.ActivityNewAlbumBinding
 import com.northcoders.recordshop.model.Album
 import com.northcoders.recordshop.model.Artist
+import com.northcoders.recordshop.model.Genre
 import com.northcoders.recordshop.model.Song
 
 class NewAlbumActivity : AppCompatActivity() {
@@ -27,6 +28,7 @@ class NewAlbumActivity : AppCompatActivity() {
 
     private lateinit var artistAdapter: ArtistAdapter
     private lateinit var songAdapter: SongAdapter
+    private lateinit var genreAdapter: GenreAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,12 +101,32 @@ class NewAlbumActivity : AppCompatActivity() {
             }
         }
 
+        binding.genreSpinner.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val genre = genreAdapter.list()[position]
+
+                binding.album?.genre = genre
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
         artistAdapter = ArtistAdapter()
         binding.artistSpinner.adapter = artistAdapter
 
+        genreAdapter = GenreAdapter()
+        genreAdapter.setList(Genre.entries)
+        binding.genreSpinner.adapter = genreAdapter
+
         songAdapter = SongAdapter()
         binding.songListView.adapter = songAdapter
-
 
 
         getAllArtists()
