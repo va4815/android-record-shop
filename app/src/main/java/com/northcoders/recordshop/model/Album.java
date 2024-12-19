@@ -14,15 +14,18 @@ public class Album extends BaseObservable {
     private Long id;
     private String name;
     private String releasedDate;
-    private Genre genre;
+
+    private String genre;
+    private Genre displayGenre;
     private List<Song> songs = new ArrayList<>();
     private List<Long> artistIds = new ArrayList<>();
 
-    public Album(Long id, String name, String releasedDate, Genre genre, List<Song> songs, List<Long> artistIds) {
+    public Album(Long id, String name, String releasedDate, String genre, Genre displayGenre, List<Song> songs, List<Long> artistIds) {
         this.id = id;
         this.name = name;
         this.releasedDate = releasedDate;
         this.genre = genre;
+        this.displayGenre = displayGenre;
         this.songs = songs;
         this.artistIds = artistIds;
     }
@@ -61,13 +64,23 @@ public class Album extends BaseObservable {
     }
 
     @Bindable
-    public Genre getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(Genre genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
         notifyPropertyChanged(BR.genre);
+    }
+
+    @Bindable
+    public Genre getDisplayGenre() {
+        return displayGenre;
+    }
+
+    public void setDisplayGenre(Genre displayGenre) {
+        this.displayGenre = displayGenre;
+        notifyPropertyChanged(BR.displayGenre);
     }
 
     @Bindable

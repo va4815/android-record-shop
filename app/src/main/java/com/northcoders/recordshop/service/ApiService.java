@@ -6,6 +6,7 @@ import com.northcoders.recordshop.model.Artist;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
@@ -15,7 +16,7 @@ public interface ApiService {
     Call<List<Album>> getAllAlbums();
 
     @POST("albums")
-    Call<Album> createAlbum(Album album);
+    Call<Album> createAlbum(@Body Album album);
 
     @GET("artists")
     Call<List<Artist>> getAllArtists();

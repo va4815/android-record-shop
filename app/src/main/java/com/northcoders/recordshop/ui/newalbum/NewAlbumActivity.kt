@@ -1,5 +1,6 @@
 package com.northcoders.recordshop.ui.newalbum
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -19,6 +20,7 @@ import com.northcoders.recordshop.model.Album
 import com.northcoders.recordshop.model.Artist
 import com.northcoders.recordshop.model.Genre
 import com.northcoders.recordshop.model.Song
+import com.northcoders.recordshop.ui.mainactivity.MainActivity
 
 class NewAlbumActivity : AppCompatActivity() {
     private val TAG = "NewAlbumActivity"
@@ -76,7 +78,13 @@ class NewAlbumActivity : AppCompatActivity() {
             }
 
             override fun onCreateAlbumClicked(view: View) {
-                Toast.makeText(view.context, "onSubmitClicked", Toast.LENGTH_SHORT).show()
+                val album = binding?.album
+                if (album != null) {
+                    viewModel.createAlbum(album)
+
+                    val intent = Intent(view.context, MainActivity::class.java)
+                    view.context.startActivity(intent)
+                }
             }
         })
 
@@ -110,7 +118,8 @@ class NewAlbumActivity : AppCompatActivity() {
             ) {
                 val genre = genreAdapter.list()[position]
 
-                binding.album?.genre = genre
+                binding.album?.genre = genre.ordinal.toString()
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
