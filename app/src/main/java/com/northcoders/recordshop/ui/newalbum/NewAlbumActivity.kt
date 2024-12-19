@@ -26,6 +26,7 @@ class NewAlbumActivity : AppCompatActivity() {
     private lateinit var viewModel: NewAlbumActivityViewModel
 
     private lateinit var artistAdapter: ArtistAdapter
+    private lateinit var songAdapter: SongAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +61,10 @@ class NewAlbumActivity : AppCompatActivity() {
                     val songs = binding.album?.songs as ArrayList
                     songs.add(newSong)
 
+                    // set data to the listview
+                    songAdapter.items = songs
+                    songAdapter.notifyDataSetChanged()
+
                     // reset data
                     binding.song = Song()
                 }
@@ -93,6 +98,10 @@ class NewAlbumActivity : AppCompatActivity() {
 
         artistAdapter = ArtistAdapter()
         binding.artistSpinner.adapter = artistAdapter
+
+        songAdapter = SongAdapter()
+        binding.songListView.adapter = songAdapter
+
 
 
         getAllArtists()
