@@ -36,17 +36,19 @@ class NewAlbumActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         this.enableEdgeToEdge()
         setContentView(R.layout.activity_new_album)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById<View>(R.id.main)) { v: View, insets: WindowInsetsCompat ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
 
         viewModel = ViewModelProvider(this).get(NewAlbumActivityViewModel::class.java)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_album)
         binding.album = Album()
         binding.song = Song()
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById<View>(R.id.main)) { v: View, insets: WindowInsetsCompat ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         binding.clickHandler = NewAlbumClickHandler(this, object : NewAlbumInterface {
             override fun onAddSongClicked(view: View) {
