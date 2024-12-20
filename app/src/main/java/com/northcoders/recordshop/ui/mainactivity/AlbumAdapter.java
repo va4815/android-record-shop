@@ -69,6 +69,9 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumItemVie
         return albumList.size();
     }
 
-
+    public void setFilteredList(List<Album> filteredList) {
+        this.albumList = filteredList;
+        notifyDataSetChanged();
+    }
 
 }
