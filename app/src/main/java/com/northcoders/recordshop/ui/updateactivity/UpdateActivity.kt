@@ -2,6 +2,9 @@ package com.northcoders.recordshop.ui.updateactivity
 
 import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +15,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.northcoders.recordshop.R
 import com.northcoders.recordshop.databinding.ActivityUpdateBinding
 import com.northcoders.recordshop.model.Album
+import com.northcoders.recordshop.model.Genre
+import com.northcoders.recordshop.ui.newalbum.GenreAdapter
 
 class UpdateActivity : AppCompatActivity() {
 
@@ -20,7 +25,7 @@ class UpdateActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUpdateBinding
     private lateinit var handler: UpdateAlbumClickHandler
     private lateinit var selectAlbum: Album
-
+    private lateinit var genreAdapter: GenreAdapter
 
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -37,12 +42,38 @@ class UpdateActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update)
         val viewModel: UpdateActivityViewModel = ViewModelProvider(this).get(UpdateActivityViewModel::class.java)
 
+        // genre spinner
+        genreAdapter = GenreAdapter()
+        genreAdapter.setList(Genre.entries)
+        binding.genreSpinner.adapter = genreAdapter
+        binding.genreSpinner.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val genre = genreAdapter.list()[position]
+
+                binding.album?.genre = genre.ordinal.toString()
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
+        //
         val album: Album? = intent.getParcelableExtra(INTENT_KEY_ALBUM, Album::class.java)
         if (album != null) {
             selectAlbum = album
-            binding.clickHandler = UpdateAlbumClickHandler(selectAlbum, this, viewModel)
-        }
+            binding.album = selectAlbum
 
+            binding.clickHandler = UpdateAlbumClickHandler(selectAlbum, this, viewModel)
+
+            binding.genreSpinner.setSelection(selectAlbum.displayGenre.ordinal)
+        }
 
     }
 }
