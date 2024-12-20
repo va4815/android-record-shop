@@ -37,6 +37,28 @@ public class Album extends BaseObservable implements Parcelable {
     public Album() {
     }
 
+    public Album(Parcel source) {
+        this.id = source.readLong();
+        this.name = source.readString();
+        this.releasedDate = source.readString();
+        this.genre = source.readString();
+        this.displayGenre = Genre.valueOf(source.readString());
+    }
+
+    public static final Creator<Album> CREATOR = new Creator<Album>() {
+        @Override
+        public Album createFromParcel(Parcel source) {
+            return new Album(source);
+        }
+
+        @Override
+        public Album[] newArray(int size) {
+            return new Album[size];
+        }
+    };
+
+
+
     @Override
     public int describeContents() {
         return 0;

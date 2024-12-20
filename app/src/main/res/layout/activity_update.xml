@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="com.northcoders.recordshop.model.Genre" />
+        <variable name="album" type="com.northcoders.recordshop.model.Album" />
+        <variable name="clickHandler" type="com.northcoders.recordshop.ui.updateactivity.UpdateAlbumClickHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,13 +16,78 @@
         tools:context=".ui.updateactivity.UpdateActivity">
 
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:layout_margin="10dp"
+            android:background="@color/gray"
+            android:ems="10"
+            android:hint="Ablum Name"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:text="@={album.name}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/releasedDateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/gray"
+            android:ems="10"
+            android:hint="Released Date"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:text="@={album.releasedDate}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+
+        <Spinner
+            android:id="@+id/genreSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/lightBlue"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/releasedDateEditText" />
+
+        <Button
+            android:id="@+id/updateBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Update Album"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genreSpinner" />
+
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Delete Album"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateBtn" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/createFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="@{clickHandler::onBackBtnClicked}"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="30dp"
+            android:src="@android:drawable/ic_menu_revert"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
