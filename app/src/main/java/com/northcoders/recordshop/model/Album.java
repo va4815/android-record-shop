@@ -1,5 +1,9 @@
 package com.northcoders.recordshop.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
@@ -10,7 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Album extends BaseObservable {
+public class Album extends BaseObservable implements Parcelable {
     private Long id;
     private String name;
     private String releasedDate;
@@ -31,6 +35,20 @@ public class Album extends BaseObservable {
     }
 
     public Album() {
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(name);
+        dest.writeString(releasedDate);
+        dest.writeString(genre);
+        dest.writeString(displayGenre.name());
     }
 
     @Bindable
