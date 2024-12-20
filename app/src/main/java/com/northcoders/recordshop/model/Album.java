@@ -37,6 +37,16 @@ public class Album extends BaseObservable implements Parcelable {
     public Album() {
     }
 
+    public Album(Album album) {
+        this.id = id;
+        this.name = name;
+        this.releasedDate = releasedDate;
+        this.genre = genre;
+        this.displayGenre = displayGenre;
+        this.songs = songs;
+        this.artistIds = artistIds;
+    }
+
     public Album(Parcel source) {
         this.id = source.readLong();
         this.name = source.readString();

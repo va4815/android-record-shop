@@ -63,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="Update Album"
+            android:onClick="@{clickHandler::onUpdateAlbumBtnClicked}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/genreSpinner" />
@@ -73,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Delete Album"
+            android:onClick="@{clickHandler::onDeleteAlbumBtnClick}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/updateBtn" />

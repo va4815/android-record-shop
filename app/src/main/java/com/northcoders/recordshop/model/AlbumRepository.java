@@ -65,4 +65,41 @@ public class AlbumRepository {
 
     }
 
+    public void updateAlbum(Album album) {
+        ApiService albumApiService = RetrofitInstance.getService();
+
+        Call<Album> call = albumApiService.updateAlbum(album);
+
+        call.enqueue(new Callback<Album>() {
+            @Override
+            public void onResponse(Call<Album> call, Response<Album> response) {
+                Toast.makeText(application.getApplicationContext(), "Album updated", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Album> call, Throwable throwable) {
+                Toast.makeText(application.getApplicationContext(), "Unable to update album", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, throwable.getMessage());
+            }
+        });
+    }
+
+    public void deleteAlbum(Long id) {
+        ApiService albumApiService = RetrofitInstance.getService();
+
+        Call<Void> call = albumApiService.deleteAlbum(id);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(application.getApplicationContext(), "Album deleted", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable throwable) {
+                Log.e(TAG, throwable.getMessage());
+            }
+        });
+    }
+
 }

@@ -34,6 +34,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        getAllAlbums();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);

@@ -16,6 +16,7 @@ import com.northcoders.recordshop.R
 import com.northcoders.recordshop.databinding.ActivityUpdateBinding
 import com.northcoders.recordshop.model.Album
 import com.northcoders.recordshop.model.Genre
+import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel
 import com.northcoders.recordshop.ui.newalbum.GenreAdapter
 
 class UpdateActivity : AppCompatActivity() {
@@ -40,7 +41,7 @@ class UpdateActivity : AppCompatActivity() {
         }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update)
-        val viewModel: UpdateActivityViewModel = ViewModelProvider(this).get(UpdateActivityViewModel::class.java)
+        val viewModel: MainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
         // genre spinner
         genreAdapter = GenreAdapter()
