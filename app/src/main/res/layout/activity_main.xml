@@ -11,6 +11,7 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/lightGray"
         tools:context=".ui.mainactivity.MainActivity">
 
 
@@ -41,7 +42,8 @@
             android:layout_marginBottom="30dp"
             android:layout_marginEnd="30dp"
             android:onClick="@{clickHandler::onFABClicked}"
-            android:src="@android:drawable/ic_menu_add"
+            android:src="@drawable/ic_add_foreground"
+            android:backgroundTint="@color/lightPurple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
