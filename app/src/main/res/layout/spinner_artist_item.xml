@@ -18,6 +18,7 @@
             android:minHeight="48dp"
             android:text="@{item.name}"
             android:gravity="center"
+            android:textColor="@color/darkGray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

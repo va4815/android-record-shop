@@ -15,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/lightGray"
         tools:context=".ui.newalbum.NewAlbumActivity"
         >
 
@@ -33,16 +34,14 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:paddingTop="40dp"
-
                 >
-
 
                 <EditText
                     android:id="@+id/nameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@color/gray"
+                    android:background="@drawable/layout_cell"
                     android:ems="10"
                     android:hint="Ablum Name"
                     android:inputType="text"
@@ -54,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@color/gray"
+                    android:background="@drawable/layout_cell"
                     android:ems="10"
                     android:hint="Released Date"
                     android:inputType="text"
@@ -66,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@color/gray"
+                    android:background="@drawable/layout_spinner_cell"
                     android:minHeight="48dp" />
 
                 <Spinner
@@ -74,7 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@color/gray"
+                    android:background="@drawable/layout_spinner_cell"
                     android:minHeight="48dp" />
 
                 <LinearLayout
@@ -89,7 +88,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:background="@color/gray"
+                        android:background="@drawable/layout_cell"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="60dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:hint="Song Title"
                         android:inputType="text"
                         android:minHeight="48dp"
@@ -100,7 +103,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:background="@color/gray"
+                        android:background="@drawable/layout_cell"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="60dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:hint="Song Writer"
                         android:inputType="text"
                         android:minHeight="48dp"
@@ -111,7 +118,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:background="@color/gray"
+                        android:background="@drawable/layout_cell"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="60dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:hint="Song Length"
                         android:inputType="numberDecimal"
                         android:minHeight="48dp"
@@ -121,7 +132,8 @@
                         android:id="@+id/addSongBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/black"
+                        android:backgroundTint="@color/purple"
+                        android:layout_margin="10dp"
                         android:onClick="@{(view) -> clickHandler.onAddSongClicked(view)}"
                         android:text="Add Song" />
 
@@ -139,7 +151,8 @@
                     android:id="@+id/submitBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black"
+                    android:backgroundTint="@color/purple"
+                    android:layout_margin="10dp"
                     android:onClick="@{clickHandler::onSubmitClicked}"
                     android:text="Create Album" />
 
@@ -157,6 +170,7 @@
             android:layout_marginBottom="80dp"
             android:layout_marginStart="30dp"
             android:src="@android:drawable/ic_menu_revert"
+            android:backgroundTint="@color/veryLightPurple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
