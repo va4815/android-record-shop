@@ -42,7 +42,7 @@
             android:layout_marginBottom="30dp"
             android:layout_marginEnd="30dp"
             android:onClick="@{clickHandler::onFABClicked}"
-            android:src="@drawable/ic_add_foreground"
+            android:src="@android:drawable/ic_menu_add"
             android:backgroundTint="@color/lightPurple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

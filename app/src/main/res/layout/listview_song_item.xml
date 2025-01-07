@@ -16,6 +16,7 @@
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/layout_cell"
             android:minHeight="48dp"
             android:text="@{item.title}"
             android:hint="Song"
